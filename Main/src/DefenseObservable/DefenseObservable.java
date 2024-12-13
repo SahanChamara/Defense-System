@@ -7,6 +7,7 @@ import GUI.SubmarineView;
 import MilitaryVehicleEnum.MilitaryVehicle;
 import DefenseObservableInterface.DefenseObservableInterface;
 import GUI.MainControllerView;
+//import GUI.MainControllerView;
 
 /**
  *
@@ -19,6 +20,7 @@ public class DefenseObservable implements DefenseObservableInterface {
     private int position;
     private boolean isSelectedArea;
     private String msg;
+    private String vehicleSend;
 //    private String comingMsg;
 //    private String getMsg;
 
@@ -78,5 +80,13 @@ public class DefenseObservable implements DefenseObservableInterface {
             defense.setSendMsg(msg);
         }
     }
+    
+    public void militaryVehicleSendMsg(String msg){
+        this.vehicleSend=msg;
+        MainControllerView instance = MainControllerView.getInstance();
+        instance.setComingMsg(vehicleSend);
+    }
+    
+    
 
 }

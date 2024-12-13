@@ -7,7 +7,6 @@ package GUI;
 import DefenseObservable.DefenseObservable;
 import MilitaryVehicleEnum.MilitaryVehicle;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.SwingUtilities;
 import DefenseObservableInterface.DefenseObservableInterface;
 
 //import DefenseObservable.DefenseObservable;
@@ -17,22 +16,22 @@ import DefenseObservableInterface.DefenseObservableInterface;
  */
 public class MainControllerView extends javax.swing.JFrame {
 
+    private static MainControllerView instance = null;
     private DefenseObservableInterface defenseObserverInterface;
-    
-    
 
     /**
      * Creates new form MainControllerView
      *
      * @param defenseObserverInterface
      */
-    
-    public MainControllerView(DefenseObservableInterface defenseObserverInterface) {
-        this.defenseObserverInterface = defenseObserverInterface;
-        initComponents();        
+
+    private MainControllerView() {
+//        this.defenseObserverInterface = defenseObserverInterface;
+        initComponents();
         loadComboBox();
-        setVisible(true);        
+        setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,6 +171,7 @@ public class MainControllerView extends javax.swing.JFrame {
 
         txtAreaMainController.setBackground(new java.awt.Color(0, 0, 0));
         txtAreaMainController.setColumns(20);
+        txtAreaMainController.setForeground(new java.awt.Color(255, 255, 255));
         txtAreaMainController.setRows(1);
         txtAreaMainController.setTabSize(2);
         txtAreaMainController.setToolTipText("2");
@@ -204,13 +204,19 @@ public class MainControllerView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void setComingMsg(String comingMsg) {
-        System.out.println("heli eken ena text eka  "+comingMsg);        
+    public static MainControllerView getInstance() {
+        if (instance == null) {
+            instance = new MainControllerView();
+        }
+        return instance;
+    }
 
-        txtAreaMainController.setText(comingMsg);     
-        
-        
-        System.out.println("txt setarea ekata wetana text eke get text eka "+txtAreaMainController.getText());
+    public void observableInterfaceReference(DefenseObservableInterface defenseObservableInterface) {
+        this.defenseObserverInterface = defenseObservableInterface;
+    }
+
+    public void setComingMsg(String comingMsg) {
+        txtAreaMainController.setText(comingMsg);
 
     }
 
@@ -252,7 +258,6 @@ public class MainControllerView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollectInformation;

@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DefenseObservable.DefenseObservable;
 import DefenseObserver.DefenseObserver;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,14 +16,14 @@ import java.awt.Toolkit;
 public class TankView extends javax.swing.JFrame implements DefenseObserver {
 
     private boolean isSelected;
-    private MainControllerView mainView;
+    private DefenseObservable observable;
 
     /**
      * Creates new form TankView
-     * @param mainView
+     * @param observable     
      */
-    public TankView(MainControllerView mainView ) {
-        this.mainView=mainView;
+    public TankView(DefenseObservable observable) {
+        this.observable=observable;
         initComponents();
         setBottomLeftPosition();
         btnMissile.setEnabled(false);
@@ -252,8 +253,7 @@ public class TankView extends javax.swing.JFrame implements DefenseObserver {
     }//GEN-LAST:event_btnRotateShootActionPerformed
 
     private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
-        mainView.setComingMsg("Tank : "+txtFiledTank.getText());       
-        
+        observable.militaryVehicleSendMsg("Tank : "+txtFiledTank.getText());        
     }//GEN-LAST:event_btnSendHelicopterActionPerformed
 
     private void txtFiledTankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiledTankActionPerformed

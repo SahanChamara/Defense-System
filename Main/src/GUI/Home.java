@@ -111,11 +111,17 @@ public class Home extends javax.swing.JFrame {
             //            MainControllerView mainView = new MainControllerView(ob);
             DefenseObservable ob = new DefenseObservable();
             
-            MainControllerView mainView = new MainControllerView(ob);
+//            MainControllerView mainView = new MainControllerView(ob);
+            MainControllerView instance = MainControllerView.getInstance();
+            instance.observableInterfaceReference(ob);
             
-            ob.addDefense(new HelicopterView(mainView));
-            ob.addDefense(new TankView(mainView));
-            ob.addDefense(new SubmarineView(mainView));
+//            ob.addDefense(new HelicopterView(mainView));
+//            ob.addDefense(new TankView(mainView));
+//            ob.addDefense(new SubmarineView(mainView));
+
+              ob.addDefense(new HelicopterView(ob));
+              ob.addDefense(new TankView(ob));
+              ob.addDefense(new SubmarineView(ob));
         });
         timer.setRepeats(false);
         timer.start();
@@ -141,7 +147,7 @@ public class Home extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;

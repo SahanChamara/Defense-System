@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import DefenseObservable.DefenseObservable;
 import DefenseObserver.DefenseObserver;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,13 +16,16 @@ import java.awt.Toolkit;
 public class SubmarineView extends javax.swing.JFrame implements DefenseObserver {
 
     private boolean isSelected;
-    private MainControllerView mainView;
+    private DefenseObservable observable;
+    
 
     /**
      * Creates new form SubmarineView
+     * @param observable
      */
-    public SubmarineView(MainControllerView mainView) {
-        this.mainView=mainView;
+    public SubmarineView(DefenseObservable observable) {
+        this.observable=observable;
+        
         initComponents();
         setBottomRightPosition();
         btnShoot1.setEnabled(false);
@@ -277,7 +281,7 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
     }//GEN-LAST:event_btnTradient2MissileActionPerformed
 
     private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
-        mainView.setComingMsg("Submarine : "+txtFieldSubmarine.getText());
+        observable.militaryVehicleSendMsg("Submarine : "+txtFieldSubmarine.getText());        
     }//GEN-LAST:event_btnSendHelicopterActionPerformed
 
     private void setBottomRightPosition() {

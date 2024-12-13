@@ -15,19 +15,19 @@ import java.awt.Toolkit;
  */
 public class HelicopterView extends javax.swing.JFrame implements DefenseObserver {
 
-    private boolean isSelected;
-//    private MainControllerView mainView;
-    private MainControllerView mainView;
+    private boolean isSelected;   
+    private DefenseObservable observable;
 
     /**
      * Creates new form HelicopterView
      *
      *
-     * @param mainView
+     * @param observable     
      * @param
      */
-    public HelicopterView(MainControllerView mainView ) {
-        this.mainView=mainView;
+    public HelicopterView(DefenseObservable observable){
+        this.observable=observable;
+        
         initComponents();
         setTopRightPosition();
         btnMissile.setEnabled(false);
@@ -262,11 +262,7 @@ public class HelicopterView extends javax.swing.JFrame implements DefenseObserve
     }//GEN-LAST:event_lblAreaHelicopterInputMethodTextChanged
 
     private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
-        // TODO add your handling code here:
-//        String helicoptersendingMsg = txtFieldHeli.getText();
-//        mainView.setComingMsg(helicoptersendingMsg);
-        mainView.setComingMsg("Helicopter : "+txtFieldHeli.getText());
-        
+        observable.militaryVehicleSendMsg("Helicopter : "+txtFieldHeli.getText());        
           
     }//GEN-LAST:event_btnSendHelicopterActionPerformed
 
