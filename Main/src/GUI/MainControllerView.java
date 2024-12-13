@@ -4,10 +4,11 @@
  */
 package GUI;
 
+import DefenseObservable.DefenseObservable;
 import MilitaryVehicleEnum.MilitaryVehicle;
-import SliderPositionObservableInterface.SliderPositionObservableInterface;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingUtilities;
+import DefenseObservableInterface.DefenseObservableInterface;
 
 //import DefenseObservable.DefenseObservable;
 /**
@@ -16,22 +17,21 @@ import javax.swing.SwingUtilities;
  */
 public class MainControllerView extends javax.swing.JFrame {
 
-    private SliderPositionObservableInterface sliderPositionObserver;
-    //private DefenseObservable defensePositionObservable;
+    private DefenseObservableInterface defenseObserverInterface;
+    
+    
 
     /**
      * Creates new form MainControllerView
      *
-     * @param sliderPositionObserver
+     * @param defenseObserverInterface
      */
     
-    public MainControllerView(SliderPositionObservableInterface sliderPositionObserver) {
-        this.sliderPositionObserver = sliderPositionObserver;
-        initComponents();
-        setLocationRelativeTo(null);
+    public MainControllerView(DefenseObservableInterface defenseObserverInterface) {
+        this.defenseObserverInterface = defenseObserverInterface;
+        initComponents();        
         loadComboBox();
-        setVisible(true);
-        
+        setVisible(true);        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +50,6 @@ public class MainControllerView extends javax.swing.JFrame {
         lblSoldireCount = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        lbltest = new javax.swing.JLabel();
         chkSendPrivate = new javax.swing.JCheckBox();
         sliPosition = new javax.swing.JSlider();
         btnSendMain = new javax.swing.JButton();
@@ -58,15 +57,21 @@ public class MainControllerView extends javax.swing.JFrame {
         txtAreaMainController = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtSendMainMsg = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Controller");
-        setMaximumSize(new java.awt.Dimension(800, 500));
-        setMinimumSize(new java.awt.Dimension(800, 500));
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setMaximumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 24)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Main Controller");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(230, 0, 231, 50);
 
         jComboBox1.setEditable(true);
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -77,6 +82,8 @@ public class MainControllerView extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jComboBox1);
+        jComboBox1.setBounds(20, 50, 160, 20);
 
         btnCollectInformation.setFont(new java.awt.Font("Rockwell", 1, 14)); // NOI18N
         btnCollectInformation.setText("Collet Information");
@@ -85,6 +92,8 @@ public class MainControllerView extends javax.swing.JFrame {
                 btnCollectInformationActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCollectInformation);
+        btnCollectInformation.setBounds(240, 60, 170, 20);
 
         chkAreaClear.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         chkAreaClear.setText("Area Clear");
@@ -93,31 +102,50 @@ public class MainControllerView extends javax.swing.JFrame {
                 chkAreaClearActionPerformed(evt);
             }
         });
+        getContentPane().add(chkAreaClear);
+        chkAreaClear.setBounds(460, 60, 90, 20);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setText("Position");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(30, 170, 110, 30);
 
-        lblSoldireCount.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        lblSoldireCount.setBackground(new java.awt.Color(255, 255, 255));
+        lblSoldireCount.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         lblSoldireCount.setText("Soldire Count");
+        getContentPane().add(lblSoldireCount);
+        lblSoldireCount.setBounds(30, 80, 110, 30);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel4.setText("Fule Count");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 110, 110, 30);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel5.setText("Ammo Count");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(30, 140, 110, 30);
 
-        lbltest.setText("TEST");
-
-        chkSendPrivate.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        chkSendPrivate.setBackground(new java.awt.Color(0, 0, 0));
+        chkSendPrivate.setFont(new java.awt.Font("Segoe UI Emoji", 1, 10)); // NOI18N
+        chkSendPrivate.setForeground(new java.awt.Color(255, 255, 255));
         chkSendPrivate.setText("Send Private");
         chkSendPrivate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkSendPrivateActionPerformed(evt);
             }
         });
+        getContentPane().add(chkSendPrivate);
+        chkSendPrivate.setBounds(430, 180, 80, 10);
 
+        sliPosition.setBackground(new java.awt.Color(0, 0, 0));
+        sliPosition.setForeground(new java.awt.Color(255, 255, 255));
         sliPosition.setMajorTickSpacing(20);
         sliPosition.setMinorTickSpacing(5);
+        sliPosition.setOrientation(javax.swing.JSlider.VERTICAL);
         sliPosition.setPaintLabels(true);
         sliPosition.setPaintTicks(true);
         sliPosition.setValue(0);
@@ -126,6 +154,8 @@ public class MainControllerView extends javax.swing.JFrame {
                 sliPositionStateChanged(evt);
             }
         });
+        getContentPane().add(sliPosition);
+        sliPosition.setBounds(150, 110, 60, 170);
 
         btnSendMain.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSendMain.setText("SEND");
@@ -134,7 +164,13 @@ public class MainControllerView extends javax.swing.JFrame {
                 btnSendMainActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSendMain);
+        btnSendMain.setBounds(510, 170, 70, 20);
 
+        jScrollPane3.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane3.setForeground(new java.awt.Color(255, 255, 255));
+
+        txtAreaMainController.setBackground(new java.awt.Color(0, 0, 0));
         txtAreaMainController.setColumns(20);
         txtAreaMainController.setRows(1);
         txtAreaMainController.setTabSize(2);
@@ -142,87 +178,28 @@ public class MainControllerView extends javax.swing.JFrame {
         txtAreaMainController.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane3.setViewportView(txtAreaMainController);
 
+        getContentPane().add(jScrollPane3);
+        jScrollPane3.setBounds(410, 270, 160, 70);
+
+        txtSendMainMsg.setBackground(new java.awt.Color(0, 0, 0));
         txtSendMainMsg.setColumns(20);
+        txtSendMainMsg.setForeground(new java.awt.Color(255, 255, 255));
         txtSendMainMsg.setRows(1);
         txtSendMainMsg.setTabSize(2);
         txtSendMainMsg.setToolTipText("2");
         txtSendMainMsg.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtSendMainMsg.setMaximumSize(new java.awt.Dimension(600, 400));
+        txtSendMainMsg.setMinimumSize(new java.awt.Dimension(600, 400));
+        txtSendMainMsg.setPreferredSize(new java.awt.Dimension(600, 400));
         jScrollPane4.setViewportView(txtSendMainMsg);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(btnCollectInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(chkAreaClear, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sliPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblSoldireCount, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addComponent(chkSendPrivate))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addComponent(btnSendMain, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(lbltest, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(100, 100, 100))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCollectInformation)
-                    .addComponent(chkAreaClear))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSoldireCount, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(sliPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(chkSendPrivate)
-                        .addGap(11, 11, 11)
-                        .addComponent(btnSendMain, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbltest))
-        );
+        getContentPane().add(jScrollPane4);
+        jScrollPane4.setBounds(420, 80, 160, 80);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Background Videos/main Controll 600x400.gif"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 600, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,14 +211,8 @@ public class MainControllerView extends javax.swing.JFrame {
         
         
         System.out.println("txt setarea ekata wetana text eke get text eka "+txtAreaMainController.getText());
-        
-       
-//        txtAreaMainController1.setText(comingMsg);
-//        txtAreaMainController1.repaint();
-//        txtAreaMainController1.revalidate();
+
     }
-    
-    
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -254,7 +225,7 @@ public class MainControllerView extends javax.swing.JFrame {
 
     private void chkAreaClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAreaClearActionPerformed
         boolean isSelected = chkAreaClear.isSelected();
-        sliderPositionObserver.setArea(isSelected);
+        defenseObserverInterface.setArea(isSelected);
     }//GEN-LAST:event_chkAreaClearActionPerformed
 
     private void chkSendPrivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSendPrivateActionPerformed
@@ -264,12 +235,12 @@ public class MainControllerView extends javax.swing.JFrame {
     private void btnSendMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendMainActionPerformed
         // TODO add your handling code here:
         String sendMsg = txtSendMainMsg.getText();
-        sliderPositionObserver.setSendMsg(sendMsg);
+        defenseObserverInterface.setSendMsg(sendMsg);
     }//GEN-LAST:event_btnSendMainActionPerformed
 
     private void sliPositionStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliPositionStateChanged
 
-        sliderPositionObserver.setSliderPosition(sliPosition.getValue());
+        defenseObserverInterface.setSliderPosition(sliPosition.getValue());
 
 
     }//GEN-LAST:event_sliPositionStateChanged
@@ -281,39 +252,7 @@ public class MainControllerView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(MainControllerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(MainControllerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(MainControllerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(MainControllerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainControllerView().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollectInformation;
@@ -325,10 +264,10 @@ public class MainControllerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblSoldireCount;
-    private javax.swing.JLabel lbltest;
     private javax.swing.JSlider sliPosition;
     private javax.swing.JTextArea txtAreaMainController;
     private javax.swing.JTextArea txtSendMainMsg;

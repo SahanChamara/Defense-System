@@ -5,21 +5,22 @@ import GUI.HelicopterView;
 import GUI.TankView;
 import GUI.SubmarineView;
 import MilitaryVehicleEnum.MilitaryVehicle;
-import SliderPositionObservableInterface.SliderPositionObservableInterface;
+import DefenseObservableInterface.DefenseObservableInterface;
+import GUI.MainControllerView;
 
 /**
  *
  * @author Sahan Chamara
  */
-
 // This is the Main Controller of the Defense System........
-public class DefenseObservable implements SliderPositionObservableInterface  {
+public class DefenseObservable implements DefenseObservableInterface {
+    
     private DefenseObserver[] defenseObserverArr;
-    private int position;  
+    private int position;
     private boolean isSelectedArea;
     private String msg;
-    private String comingMsg;
-    //private Object ComboBoxValue;
+//    private String comingMsg;
+//    private String getMsg;
 
     public DefenseObservable() {
         this.defenseObserverArr = new DefenseObserver[0];
@@ -39,43 +40,43 @@ public class DefenseObservable implements SliderPositionObservableInterface  {
     }
 
     @Override
-    public void setSliderPosition(int position) {                
+    public void setSliderPosition(int position) {
         if (this.position != position) {
             this.position = position;
-        }       
-        notifyPosition();        
-    }  
-    
-    public void notifyPosition() {
-        for(DefenseObserver defense : defenseObserverArr){
-            defense.defense(position);            
-        }       
+        }
+        notifyPosition();
     }
-    
+
+    public void notifyPosition() {
+        for (DefenseObserver defense : defenseObserverArr) {
+            defense.defense(position);
+        }
+    }
+
     @Override
-    public void setArea(boolean isSelected){
-        if(this.isSelectedArea!=isSelected){
-            this.isSelectedArea=isSelected;            
-        }        
+    public void setArea(boolean isSelected) {
+        if (this.isSelectedArea != isSelected) {
+            this.isSelectedArea = isSelected;
+        }
         notifyArea();
     }
-    
-    public void notifyArea(){
-        for(DefenseObserver defense : defenseObserverArr){
+
+    public void notifyArea() {
+        for (DefenseObserver defense : defenseObserverArr) {
             defense.setAreaText(isSelectedArea);
         }
     }
-    
+
     @Override
-    public void setSendMsg(String msg){
-        this.msg=msg;
+    public void setSendMsg(String msg) {
+        this.msg = msg;
         notifyMsgMain();
     }
-    
-    public void notifyMsgMain(){
-        for(DefenseObserver defense : defenseObserverArr){
+
+    public void notifyMsgMain() {
+        for (DefenseObserver defense : defenseObserverArr) {
             defense.setSendMsg(msg);
         }
-    }   
+    }
 
 }

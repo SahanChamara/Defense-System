@@ -5,6 +5,8 @@
 package GUI;
 
 import DefenseObserver.DefenseObserver;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -13,13 +15,15 @@ import DefenseObserver.DefenseObserver;
 public class SubmarineView extends javax.swing.JFrame implements DefenseObserver {
 
     private boolean isSelected;
+    private MainControllerView mainView;
 
     /**
      * Creates new form SubmarineView
      */
-    public SubmarineView() {
+    public SubmarineView(MainControllerView mainView) {
+        this.mainView=mainView;
         initComponents();
-        setLocationRelativeTo(null);
+        setBottomRightPosition();
         btnShoot1.setEnabled(false);
         btnSonar.setEnabled(false);
         btnTomohowkMissle.setEnabled(false);
@@ -40,7 +44,7 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
         jLabel1 = new javax.swing.JLabel();
         jSpinner2 = new javax.swing.JSpinner();
         lblAreaSubmarine = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtFieldSubmarine = new javax.swing.JTextField();
         btnTomohowkMissle = new javax.swing.JButton();
         btnSonar = new javax.swing.JButton();
         jSlider1 = new javax.swing.JSlider();
@@ -55,32 +59,57 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
         jSlider2 = new javax.swing.JSlider();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 400));
+        setMinimumSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(600, 400));
+        getContentPane().setLayout(null);
+        getContentPane().add(jSpinner1);
+        jSpinner1.setBounds(530, 40, 55, 22);
 
         jLabel1.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 24)); // NOI18N
         jLabel1.setText("Submarine");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(240, 0, 142, 50);
+        getContentPane().add(jSpinner2);
+        jSpinner2.setBounds(530, 70, 55, 22);
 
         lblAreaSubmarine.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
+        lblAreaSubmarine.setForeground(new java.awt.Color(255, 255, 255));
         lblAreaSubmarine.setText("Area Not Cleared");
+        getContentPane().add(lblAreaSubmarine);
+        lblAreaSubmarine.setBounds(30, 50, 176, 21);
 
-        jTextField1.setText("Enter Your Message");
+        txtFieldSubmarine.setBackground(new java.awt.Color(2, 48, 63));
+        txtFieldSubmarine.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(txtFieldSubmarine);
+        txtFieldSubmarine.setBounds(180, 330, 180, 22);
 
+        btnTomohowkMissle.setBackground(new java.awt.Color(5, 75, 90));
         btnTomohowkMissle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTomohowkMissle.setForeground(new java.awt.Color(255, 255, 255));
         btnTomohowkMissle.setText("Tomohawk Missile");
         btnTomohowkMissle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTomohowkMissleActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTomohowkMissle);
+        btnTomohowkMissle.setBounds(110, 150, 160, 30);
 
+        btnSonar.setBackground(new java.awt.Color(5, 75, 90));
         btnSonar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSonar.setForeground(new java.awt.Color(255, 255, 255));
         btnSonar.setText("Sonar Operation");
         btnSonar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSonarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSonar);
+        btnSonar.setBounds(330, 100, 160, 30);
 
         jSlider1.setMajorTickSpacing(20);
         jSlider1.setMinorTickSpacing(5);
@@ -88,20 +117,40 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
         jSlider1.setPaintLabels(true);
         jSlider1.setPaintTicks(true);
         jSlider1.setValue(0);
+        getContentPane().add(jSlider1);
+        jSlider1.setBounds(20, 180, 46, 210);
 
+        btnSendHelicopter.setBackground(new java.awt.Color(2, 48, 63));
+        btnSendHelicopter.setForeground(new java.awt.Color(255, 255, 255));
         btnSendHelicopter.setText("Send");
+        btnSendHelicopter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendHelicopterActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSendHelicopter);
+        btnSendHelicopter.setBounds(380, 330, 63, 22);
 
+        txtAreaSubmarine.setBackground(new java.awt.Color(3, 67, 87));
         txtAreaSubmarine.setColumns(20);
+        txtAreaSubmarine.setForeground(new java.awt.Color(255, 255, 255));
         txtAreaSubmarine.setRows(5);
         jScrollPane1.setViewportView(txtAreaSubmarine);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(180, 200, 250, 110);
+
+        btnShoot1.setBackground(new java.awt.Color(5, 75, 90));
         btnShoot1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnShoot1.setForeground(new java.awt.Color(255, 255, 255));
         btnShoot1.setText("Shoot");
         btnShoot1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShoot1ActionPerformed(evt);
             }
         });
+        getContentPane().add(btnShoot1);
+        btnShoot1.setBounds(120, 100, 140, 30);
 
         chkPositionSubmarine.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         chkPositionSubmarine.setText("Position");
@@ -110,20 +159,32 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
                 chkPositionSubmarineActionPerformed(evt);
             }
         });
+        getContentPane().add(chkPositionSubmarine);
+        chkPositionSubmarine.setBounds(260, 70, 80, 23);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Soldire Count");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(420, 40, 91, 20);
 
+        btnTradient2Missile.setBackground(new java.awt.Color(5, 75, 90));
         btnTradient2Missile.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTradient2Missile.setForeground(new java.awt.Color(255, 255, 255));
         btnTradient2Missile.setText("Tradeint 2 Missile");
         btnTradient2Missile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTradient2MissileActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTradient2Missile);
+        btnTradient2Missile.setBounds(330, 150, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Amount Count");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Ammo Count");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(420, 70, 88, 20);
 
         jSlider2.setMajorTickSpacing(20);
         jSlider2.setMinorTickSpacing(5);
@@ -131,114 +192,28 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
         jSlider2.setPaintLabels(true);
         jSlider2.setPaintTicks(true);
         jSlider2.setValue(0);
+        getContentPane().add(jSlider2);
+        jSlider2.setBounds(530, 170, 46, 210);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Oxygen");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(530, 150, 60, 20);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Energy");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 160, 50, 20);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(34, 34, 34)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(btnTomohowkMissle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnShoot1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnTradient2Missile, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnSonar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel4)
-                                                        .addGap(47, 47, 47)
-                                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(chkPositionSubmarine)
-                                                        .addGap(32, 32, 32))))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnSendHelicopter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(lblAreaSubmarine)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(51, 51, 51)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)))
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(31, 31, 31))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblAreaSubmarine)
-                                .addComponent(jLabel3)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnSonar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnShoot1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnTomohowkMissle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnTradient2Missile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(7, 7, 7)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(chkPositionSubmarine, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnSendHelicopter)))
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 68, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Background Videos/submarine.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.setMaximumSize(new java.awt.Dimension(600, 400));
+        jLabel2.setMinimumSize(new java.awt.Dimension(600, 400));
+        jLabel2.setPreferredSize(new java.awt.Dimension(600, 400));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(-3, -4, 600, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -301,40 +276,60 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTradient2MissileActionPerformed
 
+    private void btnSendHelicopterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendHelicopterActionPerformed
+        mainView.setComingMsg("Submarine : "+txtFieldSubmarine.getText());
+    }//GEN-LAST:event_btnSendHelicopterActionPerformed
+
+    private void setBottomRightPosition() {
+    // Get the screen dimensions
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    // Get the width and height of the JFrame
+    int frameWidth = this.getWidth();
+    int frameHeight = this.getHeight();
+
+    // Calculate the bottom-right position
+    int x = screenSize.width - frameWidth; // Right edge
+    int y = screenSize.height - frameHeight; // Bottom edge
+
+    // Set the JFrame's location
+    this.setLocation(x, y);
+}
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SubmarineView().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(SubmarineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new SubmarineView().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSendHelicopter;
@@ -344,6 +339,7 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
     private javax.swing.JButton btnTradient2Missile;
     private javax.swing.JCheckBox chkPositionSubmarine;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -353,8 +349,8 @@ public class SubmarineView extends javax.swing.JFrame implements DefenseObserver
     private javax.swing.JSlider jSlider2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAreaSubmarine;
     private javax.swing.JTextArea txtAreaSubmarine;
+    private javax.swing.JTextField txtFieldSubmarine;
     // End of variables declaration//GEN-END:variables
 }

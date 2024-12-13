@@ -38,6 +38,7 @@ public class Home extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
+        btnQuit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,19 +52,43 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Background Videos/Title.gif"))); // NOI18N
         jLabel1.setText("Warface Legacy");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(242, 158, 31), new java.awt.Color(242, 158, 31), new java.awt.Color(79, 85, 74), new java.awt.Color(79, 85, 74)));
         getContentPane().add(jLabel1);
         jLabel1.setBounds(100, 420, 320, 60);
 
-        btnStart.setBackground(new java.awt.Color(255, 255, 0));
+        btnStart.setBackground(new java.awt.Color(241, 157, 16));
         btnStart.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        btnStart.setForeground(new java.awt.Color(133, 92, 38));
         btnStart.setText("START");
+        btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnStartMouseClicked(evt);
+            }
+        });
         btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartActionPerformed(evt);
             }
         });
         getContentPane().add(btnStart);
-        btnStart.setBounds(760, 20, 170, 27);
+        btnStart.setBounds(750, 20, 120, 40);
+
+        btnQuit.setBackground(new java.awt.Color(241, 157, 16));
+        btnQuit.setFont(new java.awt.Font("Copperplate Gothic Bold", 1, 18)); // NOI18N
+        btnQuit.setForeground(new java.awt.Color(133, 92, 38));
+        btnQuit.setText("Quit");
+        btnQuit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnQuitMouseClicked(evt);
+            }
+        });
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnQuit);
+        btnQuit.setBounds(750, 80, 120, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Background Videos/My Home GIF - Call of Duty_ Black Ops 6 Official Multiplayer Theme.gif"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -79,69 +104,47 @@ public class Home extends javax.swing.JFrame {
         MP3Player player = new MP3Player(new File("C:\\Users\\Sahan Chamara\\Music\\Defense System\\Main\\src\\GUI\\Background Videos\\Black ops cold war gearing up scene.mp3"));
         player.play();
 
-//        Thread.sleep(100000);
-//        DefenseObservable ob = new DefenseObservable();
-//        new MainControllerView(ob).setVisible(true);
-//        
-//        MainControllerView mainView = new MainControllerView(ob);       
-//      
-//        ob.addDefense(new HelicopterView(mainView));
-//        ob.addDefense(new TankView(mainView));
-//        ob.addDefense(new SubmarineView());
-        Timer timer = new Timer(22000, (ActionEvent e) -> {
+        Timer timer = new Timer(25000, (ActionEvent e) -> {
 
+            //            DefenseObservable ob = new DefenseObservable();
+            //            new MainControllerView(ob).setVisible(true);
+            //            MainControllerView mainView = new MainControllerView(ob);
             DefenseObservable ob = new DefenseObservable();
-//            new MainControllerView(ob).setVisible(true);
             
             MainControllerView mainView = new MainControllerView(ob);
             
             ob.addDefense(new HelicopterView(mainView));
             ob.addDefense(new TankView(mainView));
-            ob.addDefense(new SubmarineView());
+            ob.addDefense(new SubmarineView(mainView));
         });
         timer.setRepeats(false);
         timer.start();
-
     }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
+        new LoadingView().setVisible(true);
+        MP3Player player = new MP3Player(new File("C:\\Users\\Sahan Chamara\\Music\\Defense System\\Main\\src\\GUI\\Background Videos\\sniper-rifle-firing-shot-1-39789.mp3"));
+        player.play();
+    }//GEN-LAST:event_btnStartMouseClicked
+
+    private void btnQuitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuitMouseClicked
+        new LoadingView().setVisible(true);
+        MP3Player player = new MP3Player(new File("C:\\Users\\Sahan Chamara\\Music\\Defense System\\Main\\src\\GUI\\Background Videos\\sniper-rifle-firing-shot-1-39789.mp3"));
+        player.play();
+    }//GEN-LAST:event_btnQuitMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Home().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    // End of variables declaration//GEN-END:variables
+    
 }

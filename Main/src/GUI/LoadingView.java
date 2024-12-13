@@ -4,8 +4,9 @@
  */
 package GUI;
 
-
+import jaco.mp3.player.MP3Player;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import javax.swing.Timer;
 
 /**
@@ -20,11 +21,11 @@ public class LoadingView extends javax.swing.JFrame {
     public LoadingView() {
         initComponents();
         setLocationRelativeTo(null);
-        Timer timer = new Timer(22000, (ActionEvent e) -> {        
-            dispose();        
-         });
-    timer.setRepeats(false);
-    timer.start();
+        Timer timer = new Timer(25000, (ActionEvent e) -> {
+            dispose();
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
 
     /**
@@ -36,7 +37,9 @@ public class LoadingView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSkip = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(960, 540));
@@ -44,50 +47,87 @@ public class LoadingView extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(960, 540));
         getContentPane().setLayout(null);
 
+        btnSkip.setBackground(new java.awt.Color(34, 50, 54));
+        btnSkip.setFont(new java.awt.Font("Century Schoolbook", 1, 14)); // NOI18N
+        btnSkip.setForeground(new java.awt.Color(255, 255, 255));
+        btnSkip.setText("SKIP");
+        btnSkip.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, null, new java.awt.Color(0, 0, 0)));
+        btnSkip.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSkip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSkipMouseClicked(evt);
+            }
+        });
+        btnSkip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkipActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSkip);
+        btnSkip.setBounds(830, 420, 100, 30);
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Background Videos/Black ops cold war gearing up scene_2.gif"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, -4, 960, 550);
 
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("jButton1");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(850, 470, 75, 22);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSkipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipActionPerformed
+        
+    }//GEN-LAST:event_btnSkipActionPerformed
+
+    private void btnSkipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSkipMouseClicked
+        
+        MP3Player player = new MP3Player(new File("C:\\Users\\Sahan Chamara\\Music\\Defense System\\Main\\src\\GUI\\Background Videos\\sniper-rifle-firing-shot-1-39789.mp3"));
+        player.play();
+    }//GEN-LAST:event_btnSkipMouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoadingView().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LoadingView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LoadingView().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSkip;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
